@@ -7,6 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <% if  current_user %>
+    <%= "#{current_user.username}\'s Ideabox" %>
+    <%= link_to "Logout", logout_path, method: :delete %>
+  <% else %>
+    <%= link_to "Login", login_path %>
+  <% end %>
+
+  <% flash.each do |type, message| %>
+    <%= content_tag :div, message, class: "flash_#{type}" %>
+  <% end %>
 
 <%= yield %>
 

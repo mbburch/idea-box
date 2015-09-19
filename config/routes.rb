@@ -4,12 +4,19 @@ Rails.application.routes.draw do
 
     resource :user, only: [:new, :create, :show]
     resources :users, only: [:new, :create, :show]
+    resources :users, param: :username
 
+    resources :ideas
 
+    namespace :admin do
+      resources :categories
+    end
 
     get '/login', to: 'sessions#new'
     post '/login', to: 'sessions#create'
     delete '/logout', to: 'sessions#destroy'
+
+
 
   # Example resource route with options:
   #   resources :products do
@@ -44,10 +51,4 @@ Rails.application.routes.draw do
   #   resources :posts, concerns: :toggleable
   #   resources :photos, concerns: :toggleable
 
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
 end

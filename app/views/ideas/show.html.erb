@@ -1,0 +1,5 @@
+<h1><strong>Idea:</strong><%= @idea.title %></h1>
+<h1><strong>Description:</strong><%= @idea.description %>
+
+<h3><%= link_to "Edit", edit_idea_path(@idea) %></h3> |
+<h3><%= link_to "Destroy", idea_path(@idea), method: :delete %></h3>

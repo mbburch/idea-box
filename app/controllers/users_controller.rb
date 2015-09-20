@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   @user = User.new(user_params)
   if @user.save
     session[:user_id] = @user.id
-    redirect_to @user
+    redirect_to user_ideas_path(@user)
   else
     flash.now[:errors] = @user.errors.full_messages.join(", ")
     render :new
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 end
 
   def show
-    @user = User.find_by(username: params[:username])
+    @user = User.find_by(id: params[:id])
   end
 
   private

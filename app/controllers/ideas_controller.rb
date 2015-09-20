@@ -1,25 +1,25 @@
 class IdeasController < ApplicationController
-  before_action :load_idea, only: [:show, :edit, :update, :destroy]
+  before_action :get_user, :load_idea, only: [:show, :edit, :update, :destroy]
 
   def new
-    @idea = Idea.new
+    @idea = get_user.ideas.new
   end
 
   def create
-    @idea = Idea.new(idea_params)
+    @idea = get_user.ideas.new(idea_params)
     if @idea.save
       flash[:notice] = "Idea was successfully created!"
     else
       flash[:error] = "Idea is missing a title."
     end
-    redirect_to ideas_path
+    redirect_to user_ideas_path(@user)
   end
 
   def show
   end
 
   def index
-    @ideas = Idea.all
+    @ideas = get_user.ideas
   end
 
   def edit
@@ -27,7 +27,7 @@ class IdeasController < ApplicationController
 
   def update
     if @idea.update(idea_params)
-      redirect_to idea_path
+      redirect_to user_idea_path
     else
       render :edit
     end
@@ -35,7 +35,7 @@ class IdeasController < ApplicationController
 
   def destroy
     @idea.delete
-    redirect_to ideas_path
+    redirect_to user_ideas_path(@user)
   end
 
   private
@@ -45,6 +45,10 @@ class IdeasController < ApplicationController
   end
 
   def load_idea
-    @idea = Idea.find(params[:id])
+    @idea = get_user.ideas.find(params[:id])
+  end
+
+  def get_user
+    @user = User.find(params[:user_id])
   end
 end

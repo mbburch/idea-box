@@ -2,14 +2,17 @@ Rails.application.routes.draw do
 
   root to: 'welcome#index'
 
+    get 'profile', to: 'users#show'
     resource :user, only: [:new, :create, :show]
-    resources :users, only: [:new, :create, :show]
-    resources :users, param: :username
+    resources :users, only: [:new, :create] do
+      resources :ideas
+    end
 
-    resources :ideas
+    resource :categories, only: [:index, :show]
 
     namespace :admin do
       resources :categories
+      resources :images
     end
 
     get '/login', to: 'sessions#new'

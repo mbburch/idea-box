@@ -2,7 +2,9 @@ require "rails_helper"
 
 feature "User creates an idea" do
   scenario "with valid attributes" do
-    visit new_idea_path
+
+    user = User.create(username: "MB", password: "secret")
+    visit new_user_idea_path(user)
 
     fill_in "Title", with: "Bike Room"
     fill_in "Description", with: "Build a workshop space"
@@ -13,7 +15,9 @@ feature "User creates an idea" do
 
   feature "User edits an idea" do
     scenario "with valid attributes" do
-      visit new_idea_path
+
+      user = User.create(username: "MB", password: "secret")
+      visit new_user_idea_path(user)
 
       fill_in "Title", with: "Bike Room"
       fill_in "Description", with: "Build a workshop space"
@@ -35,7 +39,9 @@ feature "User creates an idea" do
 
   feature "User deletes an idea" do
     scenario "with valid attributes" do
-      visit new_idea_path
+
+      user = User.create(username: "MB", password: "secret")
+      visit new_user_idea_path(user)
 
       fill_in "Title", with: "Bike Room"
       fill_in "Description", with: "Build a workshop space"

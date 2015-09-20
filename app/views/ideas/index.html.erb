@@ -1,0 +1,23 @@
+<h1 class = "header"><%= "#{@user.username}\'s Ideas" %></h1>
+
+<h1>Ideas</h1>
+
+<%= link_to "Create a New Idea", new_user_idea_path(@user) %>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Actions</th>
+  </tr>
+  <% @ideas.each do |idea| %>
+    <tr>
+      <td><%= link_to idea.title, user_idea_path(@user, idea) %></td>
+      <td><%= idea.description %></td>
+      <td>
+        <%= link_to "Edit", edit_user_idea_path(@user, idea) %>
+        <%= link_to "Destroy", user_idea_path(@user, idea), method: :delete %>
+      </td>
+    </tr>
+    <% end %>
+  </table>

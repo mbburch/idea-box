@@ -1,0 +1,4 @@
+<h1><strong>Image:</strong><%= @image.title %></h1>
+<img src="<%= "#{@image.url}" %>" height= "200" width = "200">
+<h3><%= link_to "Edit", edit_admin_image_path(@image) %></h3> |
+<h3><%= link_to "Destroy", admin_image_path(@image), method: :delete %></h3>

@@ -1,8 +1,12 @@
-<h1>All Images</h1>
+<div class='well well-sm text-center'>
+  <h1 class="text-center">All Images</h1>
+</div>
 
-<%= link_to "Create an Image", new_admin_image_path %>
+<%= link_to new_admin_image_path, class: 'btn btn-success' do %>
+<i class="glyphicon glyphicon-plus"></i> New Todo
+<% end %>
 
-<table>
+<table class="table table-bordered">
   <tr>
     <th>Title</th>
     <th>Image</th>

@@ -1,5 +1,20 @@
-<h1><strong>Idea:</strong><%= @idea.title %></h1>
-<h1><strong>Description:</strong><%= @idea.description %>
+<span><h1><strong>Idea:</strong></h1> <h4><%= @idea.title %></h4></span>
+<span><h1><strong>Description:</strong></h1> <h4><%= @idea.description %></h4></span>
 
-<h3><%= link_to "Edit", edit_user_idea_path(@user, @idea) %></h3> |
-<h3><%= link_to "Destroy", user_idea_path(@user, @idea), method: :delete %></h3>
+  <h4>Category:</h4>
+    <% category = Category.find_by(@idea.category_id) %>
+    <p><%= "#{category.title}" %></p>
+
+  <!-- <p>Images</p>
+  <ul>
+    <% idea_images = IdeaImage.where(@idea.id == idea_image.idea_id) %>
+    <% images = idea_images.map do |idea_image| %>
+      <% idea_image.image_id %>
+      <% end %>
+    <% images.each do |image| %>
+      <li><img src="<%= "#{image.url}" %>" height= "200" width = "200"></li>
+  </ul>
+  <% end %> -->
+
+<%= link_to "Edit", edit_user_idea_path(@user, @idea) %> |
+<%= link_to "Destroy", user_idea_path(@user, @idea), method: :delete %>

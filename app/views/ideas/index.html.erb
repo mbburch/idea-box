@@ -1,10 +1,14 @@
-<h1 class = "header"><%= "#{@user.username}\'s Ideas" %></h1>
+<div class='well well-sm text-center'>
+  <h1 class = "header"><%= "#{@user.username}\'s Ideas" %></h1>
+</div>
 
-<h1>Ideas</h1>
+<h1 class="text-center">Ideas</h1>
 
-<%= link_to "Create a New Idea", new_user_idea_path(@user) %>
+<%= link_to new_user_idea_path(@user), class: 'btn btn-success' do %>
+<i class="glyphicon glyphicon-plus"></i> New Idea
+<% end %>
 
-<table>
+<table class="table table-bordered">
   <tr>
     <th>Title</th>
     <th>Description</th>

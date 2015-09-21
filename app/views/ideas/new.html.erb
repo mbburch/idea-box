@@ -1,13 +1,27 @@
-<%= form_for [@user, @idea] do |f| %>
+<div class='well well-sm text-center'>
+  <h1 class="text-center"><h1>Create a New Idea</h1>
+</div>
 
+<%= form_for [@user, @idea], html: {class: 'form-horizontal'} do |f| %>
+
+<div class="field form-group">
 <%= f.label :title %>
 <%= f.text_field :title %>
-
+</div>
+<div class="field form-group">
 <%= f.label :description %>
 <%= f.text_area :description %>
-
+</div>
+<div class="field form-group">
 <%= f.label :category %>
 <%= f.collection_select(:category_id, Category.all, :id, :title) %>
-
+</div>
+<div class="field form-group">
+<%= f.label :image %>
+<%= f.collection_select(:images, Image.all, :id, :title) %>
+</div>
+<div class="actions form-group">
 <%= f.submit "Create Idea" %>
+</div>
 <% end %>
+
